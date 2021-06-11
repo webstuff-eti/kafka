@@ -28,7 +28,6 @@ public class SimpleController {
         kafkaTemplate.send("myTopic", jsonConverter.toJson(fieldModel));
     }
 
-
     @KafkaListener(topics = "myTopic")
     public void getMessageInTopicOfKafka(String fieldModel){
         FieldModel model = (FieldModel) jsonConverter.fromJson(fieldModel, FieldModel.class);
@@ -36,29 +35,15 @@ public class SimpleController {
     }
 
 
-    /*
     @PostMapping("/topic2")
     public void post(@RequestBody AbstractModel abstractModel){
         kafkaTemplate.send("myTopic2", jsonConverter.toJson(abstractModel));
     }
 
-    @KafkaListener(topics = "myTopic")
-    public void getFromKafka(String fieldModel){
-
-        FieldModel fieldModel2 = (FieldModel) jsonConverter.fromJson(fieldModel, FieldModel.class);
-
-        System.out.println(fieldModel2.toString());
-    }
-
-
     @KafkaListener(topics = "myTopic2")
-    public void getFromKafka2(String moreSimpleModel){
-
+    public void getMessageInTopicOfKafka2(String moreSimpleModel){
         AbstractModel abstractModel1 = (AbstractModel) jsonConverter.fromJson(moreSimpleModel, AbstractModel.class);
-
         System.out.println(abstractModel1.toString());
     }
-    */
-
 
 }
